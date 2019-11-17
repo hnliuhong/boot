@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 所有的mapper配置文件,都应该添加到mybatis.config.xml主配置文件中 -->
+<!-- 如果要参数daoImpl
+1:接口的类全名,必须是Mapper映射文件的命名空间
+2:调用的方法名必须与mapper中的id相同
+-->
+<mapper namespace="cn.oa.dao.ProductDao">
+    <!-- 自定义的结构类型,用来指定字段与属性的映射关系 -->
+    <resultMap id="baseMap" type="product">
+        <id property="id" column="pid" />
+        <result property="name" column="pname"  />
+        <result property="price" column="pprice"  />
+        <result property="remark" column="premark"  />
+        <result property="date" column="pdate"  />
+    </resultMap>
+
+    <!-- dao接口中的注解指定了key value对应关系,因此不需要在配置：parameterType -->
+    <select id="queryByName" resultMap="baseMap">
+        select * from product p where p.pname like #{keyword} limit #{start},#{size}
+    </select>
+
+    <!-- #{name} 调用了Product参数里面name的get方法 -->
+    <!-- 可以给model取别名,并且配置在主配置文件中 -->
+    <insert id="save" parameterType="product">
+        insert into product (pname,pprice,premark) values (#{name},#{price},#{remark})
+    </insert>
+
+
+
+
+</mapper>

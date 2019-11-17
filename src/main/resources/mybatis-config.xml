@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- dtd xsd 都是xml约束文件 * 【0,多】 ? [0,1]  + [1,多]  -->
+    <typeAliases>
+        <package name="cn.oa.model"/>
+    </typeAliases>
+    <!-- 配置连接数据库的参数,如果整合则直接配置配置Spring中 -->
+    <mappers>
+        <!-- 指定映射文件 -->
+        <mapper resource="ProductDao.xml" />
+    </mappers>
+</configuration>
